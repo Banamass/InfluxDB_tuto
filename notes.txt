@@ -1,0 +1,73 @@
+- Vaut mieux utiliser la version 2 de InfluxDB car dans l'image y'a déjà l'Ui et d'autres choses 
+    + c'est plsu simple et plus documenté
+
+- influxDB sert à stocker des 'time series data' càd une séquence de data indexés en ordre chronologique
+
+- Orga :
+    - buckets : là où sont stockées les data et les measurements (peut en avoir plusieurs)
+    - measurements : regroupement logique des données/catégorie de la donnée
+                    --> regoupe tous les points d'une même mesure
+                    --> tous les points ici ont le même tags
+
+    - Tags = paire clé/valeur où la valuer est la métadonnée d'une data (typiquement sa source etc)
+            --> doit changer peu souvent
+    - Fiels = paire clé/valeur où la valeur est la valeur mesurée
+            --> ce qui est très variable
+    - timestamp = timestamp de la data
+
+- Point = une seule et même donnée représentée par son measurement, ses tag keys, ses tag values, field key, et timestamp
+- series = un groupe de point qui ont les mêmes tag et le même measurement
+
+
+-> Ecrire data
+
+On utilise Line Protocol = un format de txt pour donner toutes les infos pour écrire un point
+Pour ça il faut:
+    - un measurement (obligatoire)
+    - tags : liste de paires clé=valeur séparés par des ',' 
+            -> les clés et valeurs sont des strings sans les guillemets
+    - fields :  liste de paires clé=valeur séparés par des ',' 
+            -> les clés sont des strings sans les guillemets
+            -> les valeurs peuvent être des strings (quoted), floats, integers, unsigned integers, or booleans.
+
+
+Exemple:
+
+Schéma : 
+    measurement: home
+        tags
+            room: Living Room or Kitchen
+        fields
+            temp: temperature in °C (float)
+            hum: percent humidity (float)
+            co: carbon monoxide in parts per million (integer)
+        timestamp: Unix timestamp in second precision
+
+Line Protocol :
+home,room=Living\ Room temp=21.1,hum=35.9,co=0i 1641024000
+home,room=Kitchen temp=21.0,hum=35.9,co=0i 1641024000
+home,room=Living\ Room temp=21.4,hum=35.9,co=0i 1641027600
+
+
+
+--> Les queries qui utilisent les fields comme filtres ne sont pas efficaces
+    comparées aux queries sur les tags
+
+--> Une série = measurement + tag set + field key 
+    -> ca donne une courbe d'une valeur (le field key) en fonction du temps
+
+--> Un point = Une série à un timestamp donné = série + timestamp
+
+
+!! Attention : le nombre de série dépend du nombre de combinaison unique de tags
+Exemple : 1 million d'utilisateur, si on mets user_id en tag, le nombre de série explose
+
+Conséquence: InfluxDB fait bien Create et Read mais pas Update et Delete (CRUD pas complet)
+
+
+Pour faire des requêtes, 2 languages :
+
+- InfluxQL : similaire à SQL mais ne permet pas de JOIN, UNION et des requêtes complexes
+        --> Ancien, toujours utilisable pour des requêtes simples
+- Flux : proche d'un language de script et permet plus de choses
+
