@@ -37,6 +37,8 @@ Pour lancer un notebook :
 
 ## Partie 1 : Pourquoi InfluxDB ?
 
+Notebook `1_sql_vs_influxdb.ipynb`
+
 ### Qu'est-ce qu'une time series ?
 - données qui arrive au compte goutte avec un timestamp
 - on ajoute juste, on modifie pas
@@ -44,7 +46,6 @@ Pour lancer un notebook :
 
 ### SQL vs InfluxDB
 - On montre que SQL c'est pas efficace pour faire des requêtes dans ce genre de données
-- Notebook : sql_vs_influxdb.ipynb 
 (cacher ce qui se passe en arrière mais ça serait bien d'avoir une grosse base de donnée de pouvoir faire des requêtes sql et infludb dessus et de montrer qu'influxdb est plus rapide)
 
 ### Explications  : Pourquoi InfluxDB est plus rapide ?
