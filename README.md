@@ -11,12 +11,12 @@ Ce tutoriel montre notamment comment utiliser InfluxDB 2 pour :
 
 ## Setup
 
-Clone du github 
+- Clone du github 
 ```bash 
 git clone https://github.com/Banamass/InfluxDB_tuto
 cd InfluxDB_tuto
 ```
-Lancer pour la première fois : 
+- Lancer pour la première fois : 
 
 ```bash
 docker compose up --build -d
@@ -27,13 +27,41 @@ Sinon :
 docker compose up -d
 ```
 
-Pour aller sur le Dashboard InfluxDB :
+- Pour aller sur le Dashboard InfluxDB :
 
-- Aller à http://localhost:8086
+Aller à http://localhost:8086
 
-Pour lancer un notebook :
+- Pour lancer un notebook :
 
 - Connecter le kernel à http://localhost:8888
+
+## Partie 0 : Script d'initialisation
+
+Dans cette partie, nous allons lancer un script qui génère des données pour alimenter la base InfluxDB et une autre base SQL (MySQL).
+
+### Etapes
+1. Ouvrir le notebook: **notebooks/0-db-filler.ipynb**
+2. Sélectionner le Kernel:
+    - Cliquer sur Select Kernel
+    - Puis Select Another Kernel...
+    - Choisir Existing Jupyter Server...
+    - Entrer l'URL : http://localhost:8888 
+    - Confirmer (Yes)
+    - Sélectionner Python3
+
+Puis, lancer le script et laisser tourner. Au bout de quelques minutes, vous pouvez l'arrêter si vous le souhaiter
+Pas besoin d'essayer de comprendre ce que fait ce script.
+
+### Exécution
+
+- Lancer la cellule du notebook
+- Le script va commencer à générer des données en continu
+- Le script n'empêche pas de continuer le TP    
+
+Si vous souhaitez l'arrêter, laissez-le tourner au moins quelques dizaines de secondes afin de générer assez de données.
+
+### Les données
+- expliquer rapidement quelles données sont écrites dans la DB
 
 ## Partie 1 : Pourquoi InfluxDB ?
 
@@ -46,7 +74,7 @@ Notebook `1_sql_vs_influxdb.ipynb`
 
 ### SQL vs InfluxDB
 - On montre que SQL c'est pas efficace pour faire des requêtes dans ce genre de données
-(cacher ce qui se passe en arrière mais ça serait bien d'avoir une grosse base de donnée de pouvoir faire des requêtes sql et infludb dessus et de montrer qu'influxdb est plus rapide)
+- Voir 1_sql_vs_influxdb.ipynb
 
 ### Explications  : Pourquoi InfluxDB est plus rapide ?
 explications pas techniques pour l'instant : 
@@ -55,12 +83,9 @@ explications pas techniques pour l'instant :
 - données ont des pattern (valeurs proches/régulières) -> influxdb utilise des techniques de compression adaptées 
 
 
-
--> Peux-être supprimer les données entre la partie 1 et 2 pour repartir de zéro
-
 ## Partie 2 : Présentation InfluxDB
 
-Notebook `2_importation_donnees.ipynb`
+Notebook `2_.ipynb`
 
 ### Organisation des données
 
@@ -71,7 +96,7 @@ Notebook `2_importation_donnees.ipynb`
         * Timestamp : permet d'indexer les valeurs au cours du temps
 
 **Dataset** \
-On utilisera un dataset fourni par InfluxDB qui représente un cas d'utilisation IoT ("Internet of Things") simulant les niveaux de température, d'humidité et de monoxyde de carbone dans différentes pièces d'un bâtiment.
+Expliquer le format des données dans le bucket home: les tags, les fields etc
 
 ### Ecriture des données 
 - Méthode 1 : Avec l'UI d'InfluxDB (expliquer comment faire/la syntaxe)
