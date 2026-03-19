@@ -71,3 +71,18 @@ Pour faire des requêtes, 2 languages :
         --> Ancien, toujours utilisable pour des requêtes simples
 - Flux : proche d'un language de script et permet plus de choses
 
+
+
+Avec l'UI : 
+    -> Load Data -> Buckets -> home -> Add Data -> Written manually
+        home,room=LivingRoom temp=22.5,hum=40.2
+        home,room=Kitchen temp=24.0,hum=38.0
+
+Avec la CLI :
+    -> 'docker pos' poru trouver le nom du container de influx-db 
+    -> docker exec -it <NOM_DU_CONTAINER> bash pour rentrer dans le container 
+    -> influx write --bucket home --org docs --token MyInitialAdminToken0== "home,room=LivingRoom temp=23.1,hum=41.0"
+
+Avec Python :
+    -> voir notebook test.ipynb
+    
