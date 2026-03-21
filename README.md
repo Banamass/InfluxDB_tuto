@@ -85,31 +85,53 @@ explications pas techniques pour l'instant :
 
 ## Partie 2 : Présentation InfluxDB
 
-Notebook `2_.ipynb`
+Notebook `2_ecriture_donnees.ipynb`
 
 ### Organisation des données
 
 * **Bucket** : où sont stockées les données
-    * **Measurement** : groupe de données
-        * Tags : Pairs clé-valeur qui ne changent pas souvent, metadata - ex : location
-        * Fields : Pairs clé-valeur qui changent au cours du temps - ex : temperature
-        * Timestamp : permet d'indexer les valeurs au cours du temps
+    * **Measurement** : groupe de données, équivalent d'une table
+        * Tags : metadata sur laquelle on peut filtrer - ex : location
+        * Fields : valeurs mesurées - ex : temperature
+        * Timestamp : date/heure du point, permet d'indexer les valeurs au cours du temps
 
-**Dataset** \
-Expliquer le format des données dans le bucket home: les tags, les fields etc
-
-### Ecriture des données 
-- Méthode 1 : Avec l'UI d'InfluxDB (expliquer comment faire/la syntaxe)
+### Ecriture des données - cf Notebook
+- Méthode 1 : Avec l'UI d'InfluxDB 
 - Méthode 2 : CLI (soit on donne une doc soit on explique comment faire)
-- Méthode 3 : Python (donner une documentation, enlever les parties importantes et mettre des commentaire)
+- Méthode 3 : Python (donner une documentation, enlever les parties importantes et mettre des commentaires)
 
-### Concepts
-Point, Series
-Pourquoi cette organisation est optimale ?
+### Concepts clés
+
+Un point = une mesure à un instant donné -> Ex : `temperature,room=salon value=22.5`
+
+Une series = measurement + tags -> Ex : `temperature,room=salon` \
+Tous les points avec un tel tag appartiennent à la même series.
+
+**Pourquoi cette organisation est optimale ?**
+
+1. Les tags sont indexés donc les requêtes sont très rapides. On peut filtrer très facilement - cf Partie 3
+2. Les données sont stockées par series ce qui prend moins de place :
+    - timestamp proches donc on stocke plutôt le delta de temps
+    - valeurs similaires donc on stocke la différence
+    - on ne répète pas les tags
+3. InfluxDB est optimisé pour le temps réel (requêtes temporelles, agrégations...)
+4. Flexible car pas de schéma : on peut ajouter des tags et des fields à tout moment
 
 -> Question à poser : Pourquoi ne faut-il pas mettre user_id en tag
 
-
+### Dataset
+Pour la suite, on utilisera 
+- Bucket : home
+    - Measurement : home
+        - Tags : 
+            - room 
+            - floor
+        - Fields : 
+            - temp 
+            - hum 
+            - co2 
+            - power 
+            - occupied
 
 ## Partie 3 : Exploitation des données
 
