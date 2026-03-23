@@ -170,9 +170,12 @@ Notebook `4_visualisation_temps_reel.ipynb`
 
 Ce notebook affiche les données InfluxDB en direct avec une fenêtre glissante.
 
+Il inclut une UI interactive (widgets) pour piloter la visualisation.
+
 - Source : bucket `home`, measurement `home`
 - Champs visualisables : `temp`, `hum`, `co2`, `power`, `occupied`
 - Rafraîchissement configurable (par défaut toutes les 2 secondes)
+- Contrôles UI : choix du champ, choix de la fenêtre, bouton Démarrer/Arrêter
 
 ### Comment l'utiliser
 
