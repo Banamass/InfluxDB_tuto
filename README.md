@@ -155,12 +155,37 @@ Agrégations :
 - Moyenne par fenêtre de ??
 
 Visualisation :
-- Montrer différentes vues de ??
-- Comparer des courbes (quelles courbes ?)
+- La visualisation temps réel se fait dans le notebook `4_visualisation_temps_reel.ipynb`
 
 Questions ?
 Quelles pièces est la plus chaude (en moyenne) ?
 Quelle est la valeur max de ??
 etc ...
+
+## Partie 4 : Visualisation temps réel
+
+Notebook `4_visualisation_temps_reel.ipynb`
+
+### Description
+
+Ce notebook affiche les données InfluxDB en direct avec une fenêtre glissante.
+
+- Source : bucket `home`, measurement `home`
+- Champs visualisables : `temp`, `hum`, `co2`, `power`, `occupied`
+- Rafraîchissement configurable (par défaut toutes les 2 secondes)
+
+### Comment l'utiliser
+
+1. Démarrer l'environnement :
+    - `docker compose up -d`
+2. Lancer le notebook `notebooks/0_db-filler.ipynb` et exécuter sa cellule pour générer des données en continu.
+3. Ouvrir `notebooks/4_visualisation_temps_reel.ipynb`.
+4. Exécuter les cellules dans l'ordre :
+    - Cellule 1 : présentation
+    - Cellule 2 : imports + connexion + fonctions
+    - Cellule 3 : lancement du graphe temps réel
+5. Arrêter la visualisation avec le bouton Stop de la cellule en cours d'exécution.
+
+Optionnel : exécuter la cellule 4 pour fermer proprement le client InfluxDB.
 
 
