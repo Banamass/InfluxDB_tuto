@@ -134,7 +134,7 @@ Notebook `3_requetes.ipynb`
 
 ### Requêtes avec Flux
 
-Lien vers la documentation InfluxDB 2 :  `https://docs.influxdata.com/influxdb/v2/get-started/`
+Lien vers la documentation InfluxDB 2 :  `https://docs.influxdata.com/influxdb/v2/get-started/query/`
 
 ### Exercices - cf Notebook
 
