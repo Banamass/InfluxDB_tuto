@@ -136,24 +136,20 @@ Notebook `3_requetes.ipynb`
 
 Lien vers la documentation InfluxDB 2 :  `https://docs.influxdata.com/influxdb/v2/get-started/`
 
-
-Exercices :
+### Exercices - cf Notebook
 
 Requêtes de base :
 - Récupérer toutes les données dans home depuis 1 h
 - Récupérer toutes les données dans home depuis 1h et filter par le field co2
 - Récupérer toutes les données dans home depuis 1h min concernant la cuisine
-- Comparer les deux types de filtre
-    -> Question : qu'est-ce qui est mieux ? Les filtres par tag ou par field ?
+
+Comparer les deux types de filtre :
+- Préfère-t-on les filtres par tag ou par field ?
 
 Agrégations : 
 - Quelle est la température moyenne dans la salle de bain ?
 - Moyenne de l'humidité dans la cuisine par tranche de 5 minutes 
 - Quand était le max de puissance dans le bureau ?
-
-Visualisation :
-- La visualisation temps réel se fait dans le notebook `4_visualisation_temps_reel.ipynb`
-
 
 ## Partie 4 : Visualisation temps réel
 
