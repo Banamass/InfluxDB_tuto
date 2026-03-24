@@ -159,10 +159,6 @@ Agrégations :
 Visualisation :
 - La visualisation temps réel se fait dans le notebook `4_visualisation_temps_reel.ipynb`
 
-Questions ?
-Quelles pièces est la plus chaude (en moyenne) ?
-Quelle est la valeur max de ??
-etc ...
 
 ## Partie 4 : Visualisation temps réel
 
