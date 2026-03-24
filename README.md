@@ -1,7 +1,7 @@
 # Tutoriel InfluxDB
 
 ## Overview
-InfluxDB est une plateforme qui permet de collecter, stocker, intéragir et visualiser avec des données temporelles (Time Series). La particularité de ces données est qu'elles sont indexées par des valeurs temporelles. On les utilise notamment pour tracker des données au  cours du temps.
+InfluxDB est une plateforme qui permet de collecter, stocker, intéragir et visualiser des données temporelles (Time Series). La particularité de ces données est qu'elles sont indexées par des valeurs temporelles. On les utilise notamment pour tracker des données au  cours du temps.
 
 Ce tutoriel montre notamment comment utiliser InfluxDB 2 pour :
 * importer un dataset
@@ -33,7 +33,7 @@ Aller à http://localhost:8086
 
 - Pour lancer un notebook :
 
-- Connecter le kernel à http://localhost:8888
+Connecter le kernel à http://localhost:8888
 
 ## Partie 0 : Script d'initialisation
 
@@ -60,9 +60,6 @@ Pas besoin d'essayer de comprendre ce que fait ce script.
 
 Si vous souhaitez l'arrêter, laissez-le tourner au moins quelques dizaines de secondes afin de générer assez de données.
 
-### Les données
-- expliquer rapidement quelles données sont écrites dans la DB
-
 ## Partie 1 : Pourquoi InfluxDB ?
 
 Notebook `1_sql_vs_influxdb.ipynb`
@@ -80,7 +77,7 @@ Notebook `1_sql_vs_influxdb.ipynb`
 explications pas techniques pour l'instant : 
 - stockage orienté temps, données stockés dans l'ordre chronologique
 - ecriture en ajout uniquement donc optimisation pour ça
-- données ont des pattern (valeurs proches/régulières) -> influxdb utilise des techniques de compression adaptées 
+- données ont des patterns (valeurs proches/régulières) -> influxdb utilise des techniques de compression adaptées 
 
 
 ## Partie 2 : Présentation InfluxDB
@@ -89,16 +86,16 @@ Notebook `2_ecriture_donnees.ipynb`
 
 ### Organisation des données
 
-* **Bucket** : où sont stockées les données
-    * **Measurement** : groupe de données, équivalent d'une table
+* Bucket : où sont stockées les données
+    * Measurement : groupe de données, équivalent d'une table
         * Tags : metadata sur laquelle on peut filtrer - ex : location
         * Fields : valeurs mesurées - ex : temperature
         * Timestamp : date/heure du point, permet d'indexer les valeurs au cours du temps
 
 ### Ecriture des données - cf Notebook
 - Méthode 1 : Avec l'UI d'InfluxDB 
-- Méthode 2 : CLI (soit on donne une doc soit on explique comment faire)
-- Méthode 3 : Python (donner une documentation, enlever les parties importantes et mettre des commentaires)
+- Méthode 2 : CLI 
+- Méthode 3 : Python 
 
 ### Concepts clés
 
@@ -116,8 +113,6 @@ Tous les points avec un tel tag appartiennent à la même series.
     - on ne répète pas les tags
 3. InfluxDB est optimisé pour le temps réel (requêtes temporelles, agrégations...)
 4. Flexible car pas de schéma : on peut ajouter des tags et des fields à tout moment
-
--> Question à poser : Pourquoi ne faut-il pas mettre user_id en tag
 
 ### Dataset
 Pour la suite, on utilisera 
@@ -139,28 +134,22 @@ Notebook `3_requetes.ipynb`
 
 ### Requêtes avec Flux
 
-Lien vers la documentation InfluxDB 2 :  `https://docs.influxdata.com/influxdb/v2/get-started/`
+Lien vers la documentation InfluxDB 2 :  `https://docs.influxdata.com/influxdb/v2/get-started/query/`
 
-
-Exercices :
+### Exercices - cf Notebook
 
 Requêtes de base :
-- Récupérer toutes les données dans home depuis 15 min
-- Récupérer toutes les données dans home depuis 15 min et filter par un field (à voir lequel)
-- Récupérer toutes les données dans home depuis 15 min et filter par un tag (à voir lequel)
-    -> Question : qu'est-ce qui est mieux ? Les filtres par tag ou par field ?
+- Récupérer toutes les données dans home depuis 1 h
+- Récupérer toutes les données dans home depuis 1h et filter par le field co2
+- Récupérer toutes les données dans home depuis 1h min concernant la cuisine
+
+Comparer les deux types de filtre :
+- Préfère-t-on les filtres par tag ou par field ?
 
 Agrégations : 
-- Moyenne de ??
-- Moyenne par fenêtre de ??
-
-Visualisation :
-- La visualisation temps réel se fait dans le notebook `4_visualisation_temps_reel.ipynb`
-
-Questions ?
-Quelles pièces est la plus chaude (en moyenne) ?
-Quelle est la valeur max de ??
-etc ...
+- Quelle est la température moyenne dans la salle de bain ?
+- Moyenne de l'humidité dans la cuisine par tranche de 5 minutes 
+- Quand était le max de puissance dans le bureau ?
 
 ## Partie 4 : Visualisation temps réel
 
