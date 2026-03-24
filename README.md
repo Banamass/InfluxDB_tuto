@@ -1,7 +1,7 @@
 # Tutoriel InfluxDB
 
 ## Overview
-InfluxDB est une plateforme qui permet de collecter, stocker, intéragir et visualiser avec des données temporelles (Time Series). La particularité de ces données est qu'elles sont indexées par des valeurs temporelles. On les utilise notamment pour tracker des données au  cours du temps.
+InfluxDB est une plateforme qui permet de collecter, stocker, intéragir et visualiser des données temporelles (Time Series). La particularité de ces données est qu'elles sont indexées par des valeurs temporelles. On les utilise notamment pour tracker des données au  cours du temps.
 
 Ce tutoriel montre notamment comment utiliser InfluxDB 2 pour :
 * importer un dataset
@@ -33,7 +33,7 @@ Aller à http://localhost:8086
 
 - Pour lancer un notebook :
 
-- Connecter le kernel à http://localhost:8888
+Connecter le kernel à http://localhost:8888
 
 ## Partie 0 : Script d'initialisation
 
@@ -60,9 +60,6 @@ Pas besoin d'essayer de comprendre ce que fait ce script.
 
 Si vous souhaitez l'arrêter, laissez-le tourner au moins quelques dizaines de secondes afin de générer assez de données.
 
-### Les données
-- expliquer rapidement quelles données sont écrites dans la DB
-
 ## Partie 1 : Pourquoi InfluxDB ?
 
 Notebook `1_sql_vs_influxdb.ipynb`
@@ -80,7 +77,7 @@ Notebook `1_sql_vs_influxdb.ipynb`
 explications pas techniques pour l'instant : 
 - stockage orienté temps, données stockés dans l'ordre chronologique
 - ecriture en ajout uniquement donc optimisation pour ça
-- données ont des pattern (valeurs proches/régulières) -> influxdb utilise des techniques de compression adaptées 
+- données ont des patterns (valeurs proches/régulières) -> influxdb utilise des techniques de compression adaptées 
 
 
 ## Partie 2 : Présentation InfluxDB
@@ -89,16 +86,16 @@ Notebook `2_ecriture_donnees.ipynb`
 
 ### Organisation des données
 
-* **Bucket** : où sont stockées les données
-    * **Measurement** : groupe de données, équivalent d'une table
+* Bucket : où sont stockées les données
+    * Measurement : groupe de données, équivalent d'une table
         * Tags : metadata sur laquelle on peut filtrer - ex : location
         * Fields : valeurs mesurées - ex : temperature
         * Timestamp : date/heure du point, permet d'indexer les valeurs au cours du temps
 
 ### Ecriture des données - cf Notebook
 - Méthode 1 : Avec l'UI d'InfluxDB 
-- Méthode 2 : CLI (soit on donne une doc soit on explique comment faire)
-- Méthode 3 : Python (donner une documentation, enlever les parties importantes et mettre des commentaires)
+- Méthode 2 : CLI 
+- Méthode 3 : Python 
 
 ### Concepts clés
 
@@ -116,8 +113,6 @@ Tous les points avec un tel tag appartiennent à la même series.
     - on ne répète pas les tags
 3. InfluxDB est optimisé pour le temps réel (requêtes temporelles, agrégations...)
 4. Flexible car pas de schéma : on peut ajouter des tags et des fields à tout moment
-
--> Question à poser : Pourquoi ne faut-il pas mettre user_id en tag
 
 ### Dataset
 Pour la suite, on utilisera 
